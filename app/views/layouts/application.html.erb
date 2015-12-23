@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/assets/icon-b.jpg" />
+
+  <title>Bay Day</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <script>
+// $.mobile.toolbar.prototype.options.addBackBtn=true;
+if (navigator.userAgent.indexOf("Android") != -1) { 
+$.mobile.defaultPageTransition = 'none'; $.mobile.defaultDialogTransition = 'none'; 
+}
+ else {$.mobile.defaultPageTransition = 'none';}
+</script>
+<script>
+addToHomescreen();
+</script>
+</head>
+
+<body>
+
+<div data-role="page" data-theme="b" id="demo-page" class="my-page">
+
+    <div data-role="header">
+    
+        <img  width='200px'src="/assets/bayday.svg">  
+      <a href="#" data-icon="star" class="ui-btn-right">
+          <% if current_user %>
+            <span>Welcome <%=current_user.username%></span>
+          <% end %>
+      </a>
+
+  
+    </div><!-- /header -->
+    <%= render 'layouts/errors' %>
+    <!--Add Navbar-->
+<%= render 'layouts/navbar' %>
+
+<%= yield %>
+ 
+<%= render 'layouts/footer' %>
+

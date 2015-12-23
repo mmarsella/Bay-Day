@@ -1,0 +1,106 @@
+
+<%= content_tag :div, class: "show_class", data: {show: @show} do %>
+<% end %>
+
+<!--Top Half-->
+  <div data-role="main" class="ui-content">
+    <!--Image Left-->
+       <div class="ui-grid-a ui-responsive">
+      <div class="ui-block-a">
+      <img src="<%= @show.image_url %>" alt="" class="artistImg">
+       </div>
+      <!--Image End-->
+
+<!--Show Info-->
+    <!--Detail block begins-->
+    <div class="ui-block-b">
+      <h3><%= @show.showtime.strftime("%B %d, %Y, (%H:%M)-12") %></h3>
+     
+        <h1><%= @show.title %>   <small>at <%= @show.venue %></small></h1>
+      
+  </div>
+    <!--Detail block ends-->
+      <!--Ticket Info Begins-->
+      <div class="ui-block-c">
+        <%= link_to "Tickets", @show.tix_url, class: "btn btn-success btn-sm"%>
+          <%= form_tag attending_path %>
+
+          <%= hidden_field_tag "showID", @show.id%>
+
+          <%= submit_tag "Attend", class:"btn btn-primary btn-lg"%>
+          </div>
+          <!--Ticket Info Ends-->
+    <!--Show Info Ends-->
+    </div>
+    </div>
+
+
+<!--Top Half Ends-->
+<!--Bottom Begins-->
+    <!--Attending Left-->
+     <div class="ui-grid-b ui-responsive">
+      <div class="ui-block-a">
+      <h3>Attending: <%= @show.users.length %></h3>
+      <ul>
+      <% @show.users.each do |user| %>
+
+        <% if user.image_url %>
+        <li><img src="<%=user.image_url%>"><%=user.username%></li><br>
+        <% else %>
+          <li><img src="http://en.upside-art.com/images/empty_profile.png?w=220&h=100"><%=user.username%></li><br>
+
+        <% end %>
+        <% end %>
+      </ul>
+      </div>
+   <!--Attending Ends-->
+   <!--Map Begins-->
+   <div class="ui-block-b">
+      <h3>Location</h3>
+      <div id="googleMap" class="text-center"></div>
+   
+      <!--Map Ends-->
+      </div>
+      </div>
+
+     
+
+
+      <!--Bottom Ends-->
+    
+
+
+
+
+
+
+
+<script>
+// $(function(){
+  console.log('something');
+
+// INITIALIZE MAP
+  function initialize(){
+    var myCenter = new google.maps.LatLng(($('.show_class').data('show').latitude),($('.show_class').data('show').longitude));
+    
+    var mapProp = {
+      center:myCenter,
+      zoom:13,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker = new google.maps.Marker({
+      position:myCenter,
+    });
+    marker.setMap(map);
+    google.maps.event.addListenerOnce(map, 'idle', function() {
+        google.maps.event.trigger(map, 'resize');
+    });  
+  }
+  
+  // google.maps.event.addDomListener(window, 'load', initialize);
+// });
+</script>
+
+<script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDtCLjcgQRgYbZTweBbL8Hz3amT8HsbS1Y&callback=initialize"></script>
+

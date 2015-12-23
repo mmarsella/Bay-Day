@@ -1,0 +1,48 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require jquery.mobile
+ *= require_self
+ */
+
+@import "bootswatch/united/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// And finally bootswatch style itself
+@import "bootswatch/united/bootswatch";
+
+/* A bit custom styling */
+
+.lineUp {
+    -moz-column-width: 350px;
+    -moz-column-gap: 10px;
+    -webkit-column-width: 350px;
+    -webkit-column-gap: 10px;
+    column-width: 350px;
+    column-gap: 10px;
+
+
+}
+
+.picture {
+	width: 100px;
+	height:100px;
+	float: right;
+}
+
+
+.ui-mini.ui-btn-icon-right:after, .ui-mini .ui-btn-icon-right:after, .ui-header .ui-btn-icon-right:after, .ui-footer .ui-btn-icon-right:after {
+	display: none;
+}

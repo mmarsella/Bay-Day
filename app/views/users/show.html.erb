@@ -1,0 +1,50 @@
+
+
+<div data-role='content'>
+<!-- <p>
+ <% if @user.image_url == "https://s3.amazonaws.com/bit-photos/artistLarge.jpg" %>
+       <img class="picture" src="/assets/icon-b.jpg" alt="">
+       <% else %>
+      <img class="picture" src="<%=@user.image_url%>" alt="">
+      <% end %>
+      </p> -->
+
+      <p>
+        <img class="picture" src="/assets/icon-b.jpg" alt="">
+      </p>
+
+<p><%= @user.username %></p>
+
+<p><%= @user.follow_count %></p>
+
+<p><%= link_to "Follow", follow_user_path(@user)%></p>
+
+<p><%= link_to "Unfollow", unfollow_user_path(@user) %></p>
+
+</div>
+
+
+
+
+
+
+
+<div data-role='navbar'>
+  <ul>
+  <li>
+      <%= link_to "Account", '#', class: "ui-btn", id: "account", data:{id:@user.id} %>
+      </li>
+      <li>
+      <%= link_to "Attending", '#', class: "ui-btn", id: "attending", data:{id:@user.id} %>
+      </li>
+      <li>
+      <%= link_to "Friends", '#', class: "ui-btn", id: "friends" %>
+      </li>
+      </ul>
+    	<div id="swap"></div>
+    </div>
+ 
+ 
+
+
+
